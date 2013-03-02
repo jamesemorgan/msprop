@@ -9,14 +9,23 @@
       templateUrl: "/partials/home.html"
     }).when('/about', {
       templateUrl: "/partials/about.html"
+    }).when('/contact', {
+      templateUrl: "/partials/contact.html"
+    }).when('/testimonials', {
+      templateUrl: "/partials/testimonials.html"
+    }).when('/services', {
+      templateUrl: "/partials/services.html"
     }).otherwise('/', {
       redirectTo: "/home"
     });
   });
 
   mainctrl = function($scope, $location) {
-    return $scope.init = function() {
+    $scope.init = function() {
       return $location.path("/home");
+    };
+    return $scope.navigate = function(page) {
+      return $location.path("/" + page);
     };
   };
 

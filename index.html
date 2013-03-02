@@ -23,8 +23,31 @@
 					</div>
 				</div>
 			</div>
-			<div ng-view>
+			<div class="row">
+				<div class="span10 offset1">
+					<ul class="nav nav-pills">
+						<li class="active">
+						<a ng-click="navigate('home')">Home</a>
+						</li>
+						<li>
+						<a ng-click="navigate('about')">About</a>
+						</li>
+						<li>
+						<a ng-click="navigate('services')">Services</a>
+						</li>
+						<li>
+						<a ng-click="navigate('testimonials')">Testimonials</a>
+						</li>
+						<li>
+						<a ng-click="navigate('contact')">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span10 offset1" ng-view>
 
+				</div>
 			</div>
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
