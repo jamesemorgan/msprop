@@ -18,6 +18,13 @@ app.directive('navpill', ($location) ->
 		scope: {page: '@', label: '@'},
 		controller: ($scope, $element, $attrs) ->
 			$scope.active = if $location.path().search($attrs.page) isnt -1 then 'active'  else ''
+			
+			## Your scopes are not in order, I think the scope of this directive measn your outer parent scope isnt called
+			$scope.navigate = (page) ->
+				## Invoke your parent scopes method
+				$scope.$parent.navigate(page)
+				## I was thinkg you could also use $scope.$emit and then cancel this event in your parent scope 
+				## if you didnt want to tightly couple your directive to and controller 
 	}
 )
 
