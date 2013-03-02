@@ -20,9 +20,24 @@
     });
   });
 
+  app.directive('navpill', function($location) {
+    return {
+      restrict: 'E',
+      template: "<li class=\"{{active}}\"><a ng-click=\"navigate('{{page}}')\">{{label}}</a></li>",
+      replace: true,
+      scope: {
+        page: '@',
+        label: '@'
+      },
+      controller: function($scope, $element, $attrs) {
+        return $scope.active = $location.path().search($attrs.page) !== -1 ? 'active' : '';
+      }
+    };
+  });
+
   mainctrl = function($scope, $location) {
     $scope.init = function() {
-      return $location.path("/home");
+      return $location.path($location.path());
     };
     return $scope.navigate = function(page) {
       return $location.path("/" + page);

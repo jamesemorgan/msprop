@@ -10,9 +10,20 @@ app.config( ($routeProvider) ->
 	.otherwise('/',{redirectTo:"/home"})
 )
 
+app.directive('navpill', ($location) ->
+	{
+		restrict: 'E',
+		template: """<li class="{{active}}"><a ng-click="navigate('{{page}}')">{{label}}</a></li>""",
+		replace : true,
+		scope: {page: '@', label: '@'},
+		controller: ($scope, $element, $attrs) ->
+			$scope.active = if $location.path().search($attrs.page) isnt -1 then 'active'  else ''
+	}
+)
+
 mainctrl = ($scope, $location) ->
 	$scope.init = ->
-		$location.path("/home")
+		$location.path($location.path())
 
 	$scope.navigate = (page) ->
 		$location.path("/#{page}")
